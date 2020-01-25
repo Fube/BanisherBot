@@ -1,0 +1,23 @@
+{
+  "name": "banisher-bot",
+  "version": "1.0.0",
+  "engines": {
+    "node": "12.14.0"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "cron": "^1.7.2",
+    "discord.js": "^11.4.2",
+    "dotenv": "^8.0.0",
+    "hashmap": "^2.3.0",
+    "pg": "^7.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
