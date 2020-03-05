@@ -40,7 +40,7 @@ client.on('voiceStateUpdate', (_old, _new) => {
         comms.unbanish.core(_new);
 });
 
-const prefix = "$";
+const prefix = "-";
 
 const comms = {
 
