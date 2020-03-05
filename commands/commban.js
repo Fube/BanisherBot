@@ -15,7 +15,7 @@ const commban = new Command({
      */
     core : async ({message, id}) => {
 
-        if(message.author.id == me || message.author.id == derek){
+        if(message.author.id != me && message.author.id != derek){
             message.reply(`You aren't the one true master.`);
             return;
         }
@@ -32,7 +32,7 @@ const commban = new Command({
     parser : (input) => {
 
         let user = input.mentions.members.first();
-        let id = user ? user.id : input.split` `[1];
+        let id = user ? user.id : input.content.split` `[1];
 
         return {message : input, id};
     }

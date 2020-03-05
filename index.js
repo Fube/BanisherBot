@@ -21,7 +21,7 @@ client.on('guildMemberAdd', target => {
 
 client.on('message', message =>{
 
-    let {author} = message;
+    const {author} = message;
 
     if(mutes.has(author.id)){
         message.delete();
@@ -34,7 +34,7 @@ client.on('voiceStateUpdate', (_old, _new) => {
     }
     if(banished.has(_new.id) && banished.get(_new.id) && banished.get(_new.id).times > 1){
         _new.setVoiceChannel(null);
-        let {times, currChannel} = banished.get(_new.id);
+        const {times, currChannel} = banished.get(_new.id);
         banished.set(_new.id, {times : times - 1, currChannel : currChannel});
     }else
         comms.unbanish.core(_new);
@@ -72,7 +72,7 @@ const comms = {
          */
         parser : (input) => {
 
-            let name = input.content.split` `[1]; 
+            const name = input.content.split` `[1]; 
             return {message : input, name};
         }
     }),
@@ -125,7 +125,7 @@ const comms = {
          */
         parser : (input) => {
 
-            let bits = input.content.split` `;
+            const bits = input.content.split` `;
             return bits.length == 3 ? 
             {message : input, min : Number(bits[1]), max : Number(bits[2])} : 
             {message : input, max : Number(bits[1])};
@@ -154,7 +154,7 @@ client.on('message', function(message){
 	
 	if(message.content[0] === prefix){
 
-        let name = message.content.split` `[0].slice(1).toLowerCase();
+        const name = message.content.split` `[0].slice(1).toLowerCase();
         let command;
 
         for(let i in comms){
