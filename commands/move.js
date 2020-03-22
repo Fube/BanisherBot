@@ -12,7 +12,7 @@ const moveAll = new Command({
      */
     core: async ({message, from, to}) => {
 
-        console.log(`From: ${from}`, to);
+        console.log(`From: ${from.map(n => n.name)}`, to.name);
 
         if(!to){
             message.reply("Destination not found. Be sure to spell it correctly");
