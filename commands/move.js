@@ -31,12 +31,11 @@ const moveAll = new Command({
         /**Logic starts here*/
 
         //Since from.members returns a <Snowflake, GuildMember> Colelction, we anticipate it and use the for...of loop to iterate through the collection with ease by ignoring channel and only going after member.
-
         for(i = 0; i < from.length; i++){
             for(let [_, member] of from[i].members){
                 
-                //await member.setVoiceChannel(to);
-                //await delay(112);
+                await member.setVoiceChannel(to);
+                await delay(112);
             }
         }
     },
