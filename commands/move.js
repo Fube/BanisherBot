@@ -7,10 +7,12 @@ const moveAll = new Command({
     name:'moveAll', 
     description: 'Moves all users from channel(s) A...Z to B. Split between channels using the prefix.', 
     /**
-     * Moves users from channel(s) in 'from' to 'to'
+     * Moves users from channel(s) from 'from' to 'to'
      * @param {{message, from : Array, to}}
      */
     core: async ({message, from, to}) => {
+
+        console.log(from)
 
         from = from?from.split(prefix):[message.member.voiceChannel];
 
