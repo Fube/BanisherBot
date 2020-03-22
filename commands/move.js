@@ -1,18 +1,18 @@
 const delay = require('../utils/delay.js');
-const {client} = require('../objs.js');
+const { client, prefix } = require('../objs.js');
 const replyAndDelete = require('../utils/replyAndDelete.js');
 const Command = require('./command.js');
 
 const moveAll = new Command({
     name:'moveAll', 
-    description: 'Moves all users from channel(s) A...Z to B', 
+    description: 'Moves all users from channel(s) A...Z to B. Split between channels using the prefix.', 
     /**
      * Moves users from channel(s) in 'from' to 'to'
      * @param {{message, from : Array, to}}
      */
     core: async ({message, from, to}) => {
 
-        from = from?from.split` `:[message.member.voiceChannel];
+        from = from?from.split(prefix):[message.member.voiceChannel];
 
         if(typeof from[0] == 'string'){
             let froms = [];

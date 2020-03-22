@@ -1,5 +1,5 @@
 const { banish, unbanish, makeImmune, revoke, shuffle } = require('./commands/banish.js');
-const { commBanned, mutes, serverMutes, banished, client } = require('./objs.js');
+const { commBanned, mutes, serverMutes, banished, client, prefix } = require('./objs.js');
 const Command = require('./commands/command.js');
 const moveAll = require('./commands/move.js');
 const rng = require('./utils/rng.js');
@@ -40,7 +40,6 @@ client.on('voiceStateUpdate', (_old, _new) => {
         comms.unbanish.core(_new);
 });
 
-const prefix = "%";
 
 const comms = {
 

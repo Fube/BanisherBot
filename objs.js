@@ -92,6 +92,8 @@ const objs = {
 
     banished,
 
+    prefix : '%',
+
 };
 
 module.exports = objs;
