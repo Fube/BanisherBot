@@ -12,6 +12,7 @@ const moveAll = new Command({
      */
     core: async ({message, from, to}) => {
 
+        console.log(from, to);
 
         from = from?from.split(prefix):[message.member.voiceChannel];
 
@@ -45,11 +46,10 @@ const moveAll = new Command({
         for(i = 0; i < from.length; i++){
             for(let [_, member] of from[i].members){
                 
-                await member.setVoiceChannel(to);
-                await delay(112);
+                //await member.setVoiceChannel(to);
+                //await delay(112);
             }
         }
-        console.log(from, to);
     },
     /**
      * @param {Object} input
