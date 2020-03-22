@@ -12,18 +12,7 @@ const moveAll = new Command({
      */
     core: async ({message, from, to}) => {
 
-        console.log(from, to);
-
-        from = from?from.split(prefix):[message.member.voiceChannel];
-
-        if(typeof from[0] == 'string'){
-            let froms = [];
-            from.forEach(name => {
-                let channel = message.guild.channels.find(channel => channel.type =='voice' && channel.name.toString().toLowerCase() == name); 
-                froms.push(channel);
-            });
-            from = froms;
-        }
+        console.log(`From: ${from}`, to);
 
         if(!to){
             message.reply("Destination not found. Be sure to spell it correctly");
@@ -51,6 +40,7 @@ const moveAll = new Command({
             }
         }
     },
+
     /**
      * @param {Object} input
      * @returns {{message, from : Array, to}}
@@ -58,9 +48,9 @@ const moveAll = new Command({
     parser : (input) => {
 
         const bits = input.content.match(/\s.+/)[0].split(prefix).map(xx => xx.trimStart().trimEnd());
-        const destination = bits.splice(-1);
+        const destination = bits.splice(-1)[0];
 
-        let from = bits.length == [] ? undefined : bits.join(prefix);
+        let from = !bits.length ? [input.member.voiceChannel] : bits.map(n => input.guild.channels.find(channel => channel.type =='voice' && channel.name.toString().toLowerCase() == n));
         let to = input.guild.channels.find(channel => channel.type == 'voice' && channel.name.toString().toLowerCase() == destination.toString().toLowerCase());
 
         return {message : input, from, to};
