@@ -55,10 +55,10 @@ const moveAll = new Command({
      */
     parser : (input) => {
 
-        const bits = input.content.split` `;
+        const bits = input.content.match(/\s.+/)[0].split(prefix).map(xx => xx.trimStart().trimEnd());
         const destination = bits.slice(-1);
 
-        let from = bits.length == 2 ? undefined : bits.slice(1).join` `;
+        let from = bits.length == 2 ? undefined : bits.slice(1).join(prefix);
         let to = input.guild.channels.find(channel => channel.type == 'voice' && channel.name.toString().toLowerCase() == destination.toString().toLowerCase());
 
         return {message : input, from, to};
