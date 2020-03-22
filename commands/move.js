@@ -12,7 +12,6 @@ const moveAll = new Command({
      */
     core: async ({message, from, to}) => {
 
-        console.log(from)
 
         from = from?from.split(prefix):[message.member.voiceChannel];
 
@@ -50,6 +49,7 @@ const moveAll = new Command({
                 await delay(112);
             }
         }
+        console.log(from, to);
     },
     /**
      * @param {Object} input
@@ -58,9 +58,9 @@ const moveAll = new Command({
     parser : (input) => {
 
         const bits = input.content.match(/\s.+/)[0].split(prefix).map(xx => xx.trimStart().trimEnd());
-        const destination = bits.slice(-1);
+        const destination = bits.splice(-1);
 
-        let from = bits.length == 2 ? undefined : bits.slice(1).join(prefix);
+        let from = bits.length == 2 ? undefined : bits.join(prefix);
         let to = input.guild.channels.find(channel => channel.type == 'voice' && channel.name.toString().toLowerCase() == destination.toString().toLowerCase());
 
         return {message : input, from, to};
