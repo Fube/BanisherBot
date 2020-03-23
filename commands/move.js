@@ -12,8 +12,6 @@ const moveAll = new Command({
      */
     core: async ({message, from, to}) => {
 
-        console.log(`From: ${from.map(n => n.name)}`, to.name);
-
         if(!to){
             message.reply("Destination not found. Be sure to spell it correctly");
             return;
@@ -29,7 +27,6 @@ const moveAll = new Command({
         }
 
         /**Logic starts here*/
-
         //Since from.members returns a <Snowflake, GuildMember> Colelction, we anticipate it and use the for...of loop to iterate through the collection with ease by ignoring channel and only going after member.
         for(i = 0; i < from.length; i++){
             for(let [_, member] of from[i].members){
