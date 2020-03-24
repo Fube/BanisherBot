@@ -36,7 +36,7 @@ const chrono = new Command({
      * Replies to message with data from chronoDeal.
      */
     core : async (message) => {
-        let embed = new RichEmbed({
+        const embed = {
 
             color : 0x0099ff,
             title : 'Chrono Deal',
@@ -61,8 +61,8 @@ const chrono = new Command({
                 }
             ],
             image : {url : chronoDeal.img},
-        });
-        message.reply(embed);
+        };
+        message.reply({embed});
     },
     parser : (input) => input,
 
