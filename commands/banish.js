@@ -50,7 +50,8 @@ const shuffle = new Command({
 
         let channels = []; 
 
-        console.log([...message.guild.channels]);~
+        console.log(message.guild.channels);
+        message.guild.channels.forEach(console.log);
         message.guild.channels.filter(channel => channel.type == 'voice' && channel.permissionsFor(target).has(['CONNECT']) && channel.permissionsFor(client.user).has(['CONNECT','MOVE_MEMBERS'])).forEach(n => channels.push(n));
 
         let currChannel = target.voiceChannel;
