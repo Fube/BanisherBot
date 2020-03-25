@@ -50,7 +50,7 @@ const shuffle = new Command({
 
         let channels = []; 
 
-        for(field in message.guild.channels){
+        for(field in message.guild.channels.cache){
             console.log(field);
         }
         message.guild.channels.filter(channel => channel.type == 'voice' && channel.permissionsFor(target).has(['CONNECT']) && channel.permissionsFor(client.user).has(['CONNECT','MOVE_MEMBERS'])).forEach(n => channels.push(n));
