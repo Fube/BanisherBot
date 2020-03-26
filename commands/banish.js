@@ -55,7 +55,7 @@ const shuffle = new Command({
         // for(n in message.guild.channels.cache){
         //     console.log(n);
         // }
-        console.log(typeof message.guild.channels.cache);
+        //console.log(typeof message.guild.channels.cache);
         for(field of message.guild.channels.cache){console.log(field)}
         for(field in message.guild.channels.cache){console.log(field)}
 
