@@ -2,6 +2,7 @@ const delay = require('../utils/delay.js');
 const { client, prefix } = require('../objs.js');
 const replyAndDelete = require('../utils/replyAndDelete.js');
 const Command = require('./command.js');
+const findChannels = require('../utils/findChannels.js')
 
 const moveAll = new Command({
     name:'moveAll', 
@@ -31,7 +32,7 @@ const moveAll = new Command({
         for(i = 0; i < from.length; i++){
             for(let [_, member] of from[i].members){
                 
-                await member.setVoiceChannel(to);
+                await member.voice.setChannel(to);
                 await delay(112);
             }
         }
@@ -46,8 +47,8 @@ const moveAll = new Command({
         const bits = input.content.match(/\s.+/)[0].split(prefix).map(xx => xx.trimStart().trimEnd());
         const destination = bits.splice(-1)[0];
 
-        let from = !bits.length ? [input.member.voiceChannel] : bits.map(n => input.guild.channels.find(channel => channel.type =='voice' && channel.name.toString().toLowerCase() == n));
-        let to = input.guild.channels.find(channel => channel.type == 'voice' && channel.name.toString().toLowerCase() == destination.toString().toLowerCase());
+        let from = !bits.length ? [input.member.voice.channel] : bits.map(m => findChannels(input.guild, n => n.type == 'voice' && n.name.toString().toLowerCase() == m));
+        let to = findChannels(input.guild, n => n.type == 'voice' && n.name.toString().toLowerCase() == destination.toString().toLowerCase())[0];
 
         return {message : input, from, to};
     }

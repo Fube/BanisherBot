@@ -3,6 +3,7 @@ const replyAndDelete = require('../utils/replyAndDelete.js');
 const delay = require('../utils/delay.js');
 const Command = require('./command.js');
 const {client, banished, immunes, insert, del} = require('../objs.js');
+const findChannels = require('../utils/findChannels.js')
 
 const me = process.env.ME;
 
@@ -48,14 +49,7 @@ const shuffle = new Command({
             return;
         }
 
-        let channels = []; 
-
-        for(const ch of message.guild.channels.cache){
-
-            if(ch[1].type == 'voice' && ch[1].permissionsFor(target).has(['CONNECT']) && ch[1].permissionsFor(client.user).has(['CONNECT','MOVE_MEMBERS'])){
-                channels.push(ch[1]);
-            }
-        }
+        const channels = findChannels(message.guild, n => n.type == 'voice' && n.permissionsFor(target).has(['CONNECT']) && n.permissionsFor(client.user).has(['CONNECT','MOVE_MEMBERS']));
 
         let currChannel = target.voice.channel;
 
