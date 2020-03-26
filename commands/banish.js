@@ -100,7 +100,7 @@ const banish = new Command({
         if(!banished.has(target)) banished.set(target.id, {times: times, currChannel});
         else return;
 
-        target.setVoiceChannel(null);
+        target.voice.setChannel(null);
     },
     parser : (input) => {
 
