@@ -52,9 +52,8 @@ const shuffle = new Command({
 
         for(const ch of message.guild.channels.cache){
 
-            const chan = await client.channels.fetch(ch[1].id);
-            if(ch[1].type == 'voice' && chan.permissionsFor(target).has(['CONNECT']) && ch[1].permissionsFor(client.user).has(['CONNECT','MOVE_MEMBERS'])){
-                channels.push(chan);
+            if(ch[1].type == 'voice' && ch[1].permissionsFor(target).has(['CONNECT']) && ch[1].permissionsFor(client.user).has(['CONNECT','MOVE_MEMBERS'])){
+                channels.push(ch[1]);
             }
         }
 
@@ -77,7 +76,7 @@ const shuffle = new Command({
 
         target.voice.setChannel(currChannel);
 
-        message.delete(3000);
+        message.delete({timeout: 3000});
     },
     /**
      * @param {Object} input Caller's message
