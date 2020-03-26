@@ -65,6 +65,8 @@ const shuffle = new Command({
         for(let i = 0; i < times;){
 
             let randomNum = getRandomInt(len);
+            console.log(randomNum);
+            console.log(channels[randomNum]);
 
             while(channels[randomNum].id == target.voiceChannel.id || channels[randomNum].id == currChannel.id)
                 randomNum = getRandomInt(len);
