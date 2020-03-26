@@ -31,7 +31,7 @@ client.on('message', message =>{
 
 client.on('voiceStateUpdate', (_old, _new) => {
     console.log(_new.mute)
-    if(serverMutes.has(_new.id) && !_new.mute){
+    if(serverMutes.has(_new.id) && !_new.serverMute){
         _new.voice.setMute(true);
     }
     if(banished.has(_new.id) && banished.get(_new.id) && banished.get(_new.id).times > 1){
