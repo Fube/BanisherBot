@@ -34,7 +34,7 @@ client.on('voiceStateUpdate', (_old, _new) => {
         _new.setMute(true);
     }
     if(banished.has(_new.id) && banished.get(_new.id) && banished.get(_new.id).times > 1){
-        _new.voice.setChannel(null);
+        _new.setChannel(null);
         const {times, currChannel} = banished.get(_new.id);
         banished.set(_new.id, {times : times - 1, currChannel : currChannel});
     }else
