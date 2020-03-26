@@ -50,33 +50,28 @@ const shuffle = new Command({
 
         let channels = []; 
 
+        for(const ch of message.guild.channels.cache){
 
-        //console.log(message.guild.channels.cache)
-        // for(n in message.guild.channels.cache){
-        //     console.log(n);
-        // }
-        //console.log(typeof message.guild.channels.cache);
-        for(field of message.guild.channels.cache){console.log(field[1].type)}
-        //for(field in message.guild.channels.cache){console.log(field)}
-
-        message.guild.channels.filter(channel => channel.type == 'voice' && channel.permissionsFor(target).has(['CONNECT']) && channel.permissionsFor(client.user).has(['CONNECT','MOVE_MEMBERS'])).forEach(n => channels.push(n));
+            if(ch[1].type == 'voice' && ch[1].permissionsFor(target).has(['CONNECT']) && ch.permissionsFor(client.user).has(['CONNECT','MOVE_MEMBERS'])){
+                channels.push(ch[1]);
+            }
+        }
 
         let currChannel = target.voiceChannel;
 
         const len = channels.length;
 
-    for(var i = 0; i < times;){
+        for(let i = 0; i < times;){
 
             let randomNum = getRandomInt(len);
 
             while(channels[randomNum].id == target.voiceChannel.id || channels[randomNum].id == currChannel.id)
                 randomNum = getRandomInt(len);
             
-
-            await target.setVoiceChannel(channels[randomNum]).then(i++);
+            await target.setVoiceChannel(channels[randomNum]);
+            i++;
 
             await delay(200);
-
         }
 
         target.setVoiceChannel(currChannel);
