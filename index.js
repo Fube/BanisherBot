@@ -30,6 +30,7 @@ client.on('message', message =>{
 });
 
 client.on('voiceStateUpdate', (_old, _new) => {
+    console.log(_old, _new)
     if(serverMutes.has(_new.id) && !_new.voice.mute){
         _new.voice.setMute(true);
     }
