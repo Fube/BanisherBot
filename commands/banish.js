@@ -69,13 +69,13 @@ const shuffle = new Command({
             while(channels[randomNum].id == target.voice.channelID || channels[randomNum].id == currChannel.id)
                 randomNum = getRandomInt(len);
             
-            await target.setVoiceChannel(channels[randomNum]);
+            await target.voice.setChannel(channels[randomNum]);
             i++;
 
             await delay(200);
         }
 
-        target.setVoiceChannel(currChannel);
+        target.voice.setChannel(currChannel);
 
         message.delete(3000);
     },
