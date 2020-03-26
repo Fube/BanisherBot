@@ -36,7 +36,7 @@ const shuffle = new Command({
         }
 
         if(times > 10 || times < 1){
-            replyAndDelete(message, "Nice try guy, but you can't have a value bigger than 5 or lower than 1");
+            replyAndDelete(message, "Nice try guy, but you can't have a value bigger than 10 or lower than 1");
             return;
         }else if(!author.hasPermission("ADMINISTRATOR")){
             replyAndDelete(message, "Nice try guy.");
@@ -51,10 +51,10 @@ const shuffle = new Command({
         let channels = []; 
 
 
-        //console.log(message.guild.channels.cache)
-        for(n in message.guild.channels.cache){
-            console.log(n);
-        }
+        console.log(message.guild.channels.cache)
+        // for(n in message.guild.channels.cache){
+        //     console.log(n);
+        // }
 
         message.guild.channels.filter(channel => channel.type == 'voice' && channel.permissionsFor(target).has(['CONNECT']) && channel.permissionsFor(client.user).has(['CONNECT','MOVE_MEMBERS'])).forEach(n => channels.push(n));
 
