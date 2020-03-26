@@ -54,7 +54,8 @@ const shuffle = new Command({
 
             if(ch[1].type == 'voice' /*&& ch[1].permissionsFor(target).has(['CONNECT']) && ch.permissionsFor(client.user).has(['CONNECT','MOVE_MEMBERS'])*/){
                 //channels.push(ch[1]);
-                console.log(ch[1])
+                client.channels.fetch(ch[1].id)
+                    .then(x => console.log(x));
             }
         }
 
