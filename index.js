@@ -11,6 +11,7 @@ const unstfu = require('./commands/unstfu.js');
 const mute = require('./commands/mute.js');
 const unmute = require('./commands/unmute.js');
 const chrono = require('./commands/chrono.js');
+const replyAndDelete = require('./utils/replyAndDelete.js')
 
 client.on('guildMemberAdd', target => {
     
@@ -33,7 +34,7 @@ client.on('voiceStateUpdate', (_old, _new) => {
         _new.setMute(true);
     }
     if(banished.has(_new.id) && banished.get(_new.id) && banished.get(_new.id).times > 1){
-        _new.setVoiceChannel(null);
+        _new.voice.setChannel(null);
         const {times, currChannel} = banished.get(_new.id);
         banished.set(_new.id, {times : times - 1, currChannel : currChannel});
     }else
@@ -80,7 +81,7 @@ const comms = {
      * Replies to message to notify the caller that the specified command was not found.
      * @param {Object} n Message
      */
-    notFound : n => n.reply('No such command found').then(e => e.delete(3000)),
+    notFound : n => replyAndDelete('No such command found'),
 
     banish,
 

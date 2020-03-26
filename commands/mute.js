@@ -18,7 +18,7 @@ let mute = new Command({
         }
 
         serverMutes.add(id);
-        target.setMute(true);
+        target.voice.setMute(true);
     },
     /**
      * @param {Object} input
