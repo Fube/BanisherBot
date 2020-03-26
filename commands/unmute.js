@@ -20,7 +20,7 @@ const unmute = new Command({
 
         if(serverMutes.has(target.id)){
             serverMutes.delete(target.id);
-            target.setMute(false);
+            target.voice.setMute(false);
             message.reply('Successfuly unmuted target');
             return;
         }else{
