@@ -62,7 +62,7 @@ const comms = {
                 return;
             }
             if(comms[name] && comms[name] instanceof Command) 
-                message. (comms[name].description);
+                message.reply(comms[name].description);
             else 
                 comms.notFound(message);
         },
