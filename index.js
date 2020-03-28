@@ -11,7 +11,7 @@ const unstfu = require('./commands/unstfu.js');
 const mute = require('./commands/mute.js');
 const unmute = require('./commands/unmute.js');
 const chrono = require('./commands/chrono.js');
-const replyAndDelete = require('./utils/replyAndDelete.js')
+const replyAndDelete = require('./utils/replyAndDelete.js');
 
 client.on('guildMemberAdd', target => {
     
