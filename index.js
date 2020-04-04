@@ -104,7 +104,10 @@ const comms = {
          * Takes a message object as an input and repleis to it with Heads or Tails
          * @param {Object} n Message
          */
-        core: n => {n.reply(rng(0, 1000) % 2 == 0 ? "Heads" : 'Tails'); return true;},
+        core: n => {
+            n.reply(rng(0, 1000) % 2 == 0 ? "Heads" : 'Tails');
+            return true;
+        },
         /**
          * @param {Object} input Doesn't do anything, simply passes message through
          */
@@ -118,7 +121,14 @@ const comms = {
          * Given at least a number, rng replies to the original message with a random number in range of min and max. Min is optional.
          * @param {{message, min? : number, max : number}}
          */
-        core: ({message, min = 0, max}) => {message.reply(rng(min, max)); return true;},
+        core: ({message, min = 0, max}) => {
+            const num = rng(min, max);
+            if(num || num === 0){
+                message.reply(num);
+                return true;
+            }
+            return false;
+        },
         /**
          * @param {Object} input Caller's message
          * @returns {{input, min? : number, max : number}}
@@ -167,11 +177,12 @@ client.on('message', async function(message){
         if(command && command instanceof Command){
             let valid;
             try{
-                valid = command.core(command.parser(message));
+                console.log(command.core(command.parser(message)));
             }catch(e){
                 valid = false;
                 console.log(e.stack);
             }
+            console.log(valid);
             message.react(valid ? '✅' : '❌');
         }else
             comms.notFound(message);
