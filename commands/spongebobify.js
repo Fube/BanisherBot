@@ -16,6 +16,7 @@ let sbify = new Command({
 
         message.channel.send(`From ${message.author.username}, ${out}`);
         message.delete();
+        return true;
     },
     /**
      * @param {Object} input

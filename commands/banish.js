@@ -3,7 +3,7 @@ const replyAndDelete = require('../utils/replyAndDelete.js');
 const delay = require('../utils/delay.js');
 const Command = require('./command.js');
 const {client, banished, immunes, insert, del} = require('../objs.js');
-const findChannels = require('../utils/findChannels.js')
+const findChannels = require('../utils/findChannels.js');
 
 const me = process.env.ME;
 
@@ -94,13 +94,14 @@ const banish = new Command({
         //permcheck AND args check
         if(!author.hasPermission(['ADMINISTRATOR'], false, true, true)|| times < 1 || isImmune(target.id)){
             replyAndDelete(message, "Nice try guy.");
-            return;
+            return false;
         }
 
         if(!banished.has(target)) banished.set(target.id, {times: times, currChannel});
         else return;
 
         target.voice.setChannel(null);
+        return true;
     },
     parser : (input) => {
 
@@ -145,13 +146,14 @@ const banishSet = {
             if(author.id != me){
 
                 replyAndDelete(message,"Nice try, but only the author can make others immune.");
-                return;
+                return false;
             }
 
             immunes.add(target.id);
 
             insert(target.id, "immunes");
             replyAndDelete(message, "Done.");
+            return true;
         },
         parser : (input) => {
 
@@ -173,16 +175,16 @@ const banishSet = {
         
             if(author.id != me){
                 replyAndDelete("Nice try, but only the author can doom others.");
-                return;
+                return false;
             }else if(!isImmune(target.id)){
                 replyAndDelete("User is not immune.");
-                return;
+                return false;
             }
 
             immunes.delete(target.id);
 
             del(target.id, "immunes", "ID");
-            replyAndDelete(message, "User is no longer immune.");
+            return true;
         },
         /**
          * @param {Object} input

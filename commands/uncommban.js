@@ -16,13 +16,14 @@ const uncommban = new Command({
 
         if(message.author.id == me || message.author.id == derek){
             message.reply(`You aren't the one true master.`);
-            return;
+            return false;
         }
 
-        message.guild.unban(id);
+        message.guild.members.unban(id);
 
         commBanned.delete(id);
         del(id, "commBanned", "ID");
+        return true;
     },
     /**
      * @param {Object} input Caller's message

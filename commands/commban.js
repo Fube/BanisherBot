@@ -17,13 +17,16 @@ const commban = new Command({
 
         if(message.author.id != me && message.author.id != derek){
             message.reply(`You aren't the one true master.`);
-            return;
+            return false;
         }
 
-        await message.guild.ban(id);
+        await (await message.guild.members.fetch(id)).ban();
+
+        
         
         commBanned.add(id);
         insert(id, "commBanned", "ID");
+        return true;
     },
     /**
      * @param {Object} input

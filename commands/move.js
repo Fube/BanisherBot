@@ -2,7 +2,7 @@ const delay = require('../utils/delay.js');
 const { client, prefix } = require('../objs.js');
 const replyAndDelete = require('../utils/replyAndDelete.js');
 const Command = require('./command.js');
-const findChannels = require('../utils/findChannels.js')
+const findChannels = require('../utils/findChannels.js');
 
 const moveAll = new Command({
     name:'moveAll', 
@@ -15,16 +15,16 @@ const moveAll = new Command({
 
         if(!to){
             message.reply("Destination not found. Be sure to spell it correctly");
-            return;
+            return false;
         }
 
 
         if(!to.permissionsFor(client.user).has(['CONNECT','MOVE_MEMBERS'])){
             replyAndDelete(message, 'I lack the permissions to do that');
-            return;
+            return false;
         }else if(!to.permissionsFor(message.member).has(['CONNECT'])){
             replyAndDelete(message, 'You lack the permission to do that');
-            return;
+            return false;
         }
 
         /**Logic starts here*/
@@ -36,6 +36,7 @@ const moveAll = new Command({
                 await delay(112);
             }
         }
+        return true;
     },
 
     /**

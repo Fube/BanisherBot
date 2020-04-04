@@ -63,6 +63,7 @@ const chrono = new Command({
             image : {url : chronoDeal.img},
         };
         message.reply({embed});
+        return true;
     },
     parser : (input) => input,
 

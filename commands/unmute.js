@@ -15,17 +15,15 @@ const unmute = new Command({
 
         if((!member.hasPermission(['ADMINISTRATOR'], false, true, true) || immunes.has(id)) && member.id != process.env.ME){
             message.reply('Admin power is required for this command.');
-            return;
+            return false;
         }
 
         if(serverMutes.has(target.id)){
             serverMutes.delete(target.id);
             target.voice.setMute(false);
-            message.reply('Successfuly unmuted target');
-            return;
+            return true;
         }else{
-            message.reply('Command was not exectued successfuly');
-            return;
+            return false;
         }
     },
     /**

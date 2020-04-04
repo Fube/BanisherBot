@@ -15,11 +15,12 @@ const stfu = new Command({
         //Note that the 3 booleans, in order, are: check if user has EXPLICIT permission, allow admin override, allow owner override. Also note that the docs say that EXPLICIT check is deprecated
         if((!member.hasPermission(['ADMINISTRATOR'], false, true, true) || immunes.has(id)) && member.id != process.env.ME){
             message.reply('Admin power is required for this command.');
-            return;
+            return false;
         }
 
         insert(id, 'mutes');
         mutes.add(id);
+        return true;
     },
     /**
      * @param {Object} input

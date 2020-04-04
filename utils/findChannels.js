@@ -1,4 +1,4 @@
-const { client } = require('../objs.js')
+const { client } = require('../objs.js');
 
 /**
  * Finds channels that match a predicate
