@@ -177,12 +177,11 @@ client.on('message', async function(message){
         if(command && command instanceof Command){
             let valid;
             try{
-                console.log(command.core(command.parser(message)));
+                valid = await command.core(command.parser(message));
             }catch(e){
                 valid = false;
                 console.log(e.stack);
             }
-            console.log(valid);
             message.react(valid ? '✅' : '❌');
         }else
             comms.notFound(message);
