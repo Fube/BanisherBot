@@ -172,7 +172,7 @@ client.on('message', async function(message){
                 valid = false;
                 console.log(e.stack);
             }
-            message.react(valid ? 'white_check_mark' : 'bangbang');
+            message.react(valid ? '✔' : '❌');
         }else
             comms.notFound(message);
 	}
