@@ -81,7 +81,7 @@ const comms = {
      * Replies to message to notify the caller that the specified command was not found.
      * @param {Object} n Message
      */
-    notFound : n => replyAndDelete('No such command found'),
+    notFound : (n, m = 'No such command found') => replyAndDelete(n,m),
 
     banish,
 
