@@ -4,14 +4,14 @@ const delay = require('../utils/delay.js');
 const clean = new Command({
 
     name : 'clean',
-    description : 'Removes X messages where 0<x<=500',
+    description : 'Removes X messages where 0<x<=50',
     /** 
      * Just discordjs.TextChannel.bulkDelete
      * @param {{channel, times : number}}
     */
     core : async ({channel, times}) =>{
 
-        if(times>500||times<1)return false;
+        if(times>50||times<1)return false;
         //This is to avoid the visual bug that sometimes happens when a message is instantly deleted.
         await delay(125);
         await channel.bulkDelete(+times+1);
