@@ -11,6 +11,7 @@ const unstfu = require('./commands/unstfu.js');
 const mute = require('./commands/mute.js');
 const unmute = require('./commands/unmute.js');
 const chrono = require('./commands/chrono.js');
+const clean = require('./commands/clean.js');
 const replyAndDelete = require('./utils/replyAndDelete.js');
 
 client.on('guildMemberAdd', target => {
@@ -157,6 +158,8 @@ const comms = {
     sarc,
 
     chrono,
+
+    clean,
 };
 
 

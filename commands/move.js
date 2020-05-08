@@ -48,8 +48,8 @@ const moveAll = new Command({
         const bits = input.content.match(/\s.+/)[0].split(prefix).map(xx => xx.trimStart().trimEnd());
         const destination = bits.splice(-1)[0];
 
-        let from = !bits.length ? [input.member.voice.channel] : bits.map(m => findChannels(input.guild, n => n.type == 'voice' && n.name.toString().toLowerCase() == m));
-        let to = findChannels(input.guild, n => n.type == 'voice' && n.name.toString().toLowerCase() == destination.toString().toLowerCase())[0];
+        const from = !bits.length ? [input.member.voice.channel] : bits.map(m => findChannels(input.guild, n => n.type == 'voice' && n.name.toString().toLowerCase() == m));
+        const to = findChannels(input.guild, n => n.type == 'voice' && n.name.toString().toLowerCase() == destination.toString().toLowerCase())[0];
 
         return {message : input, from, to};
     }

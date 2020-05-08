@@ -1,7 +1,7 @@
 const Command = require('./command.js');
 const {immunes, serverMutes} = require('../objs.js');
 
-let mute = new Command({ 
+const mute = new Command({ 
 
     name : "mute",
     description : "Server mute target and instantly remutes them if unmuted",
@@ -27,9 +27,9 @@ let mute = new Command({
      */
     parser : (input) => {
 
-        let target = input.mentions.members.first();
-        let {member} = input;
-        let {id} = target;
+        const target = input.mentions.members.first();
+        const {member} = input;
+        const {id} = target;
 
         return {message : input, target, member, id};
     }

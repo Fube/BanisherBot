@@ -1,7 +1,7 @@
 const rng = require('../utils/rng.js');
 const Command = require('../commands/command.js');
 
-let sbify = new Command({
+const sbify = new Command({
 
     name : 'sarc',
     description : 'Spongebob-ifies a string',

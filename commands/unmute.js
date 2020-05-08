@@ -32,9 +32,9 @@ const unmute = new Command({
      */
     parser : (input) => {
 
-        let target = input.mentions.members.first();
-        let {member} = input;
-        let {id} = target;
+        const target = input.mentions.members.first();
+        const {member} = input;
+        const {id} = target;
 
         return {message : input, target, member, id};
     }

@@ -28,9 +28,9 @@ const stfu = new Command({
      */
     parser : (input) =>{
 
-        let {member} = input;
-        let user = input.mentions.users.first();
-        let id = user ? user.id : input.split` `[1];
+        const {member} = input;
+        const user = input.mentions.users.first();
+        const id = user ? user.id : input.split` `[1];
 
         return {message : input, member, id};
     }

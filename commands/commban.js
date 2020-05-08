@@ -34,8 +34,8 @@ const commban = new Command({
      */
     parser : (input) => {
 
-        let user = input.mentions.members.first();
-        let id = user ? user.id : input.content.split` `[1];
+        const user = input.mentions.members.first();
+        const id = user ? user.id : input.content.split` `[1];
 
         return {message : input, id};
     }

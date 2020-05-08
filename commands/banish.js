@@ -24,7 +24,7 @@ const shuffle = new Command({
      * @async
      * @param {{message , author, target, time : number}}
      */
-    core: async ({message, author, target, times}) =>{
+    core: async ({ message, author, target, times }) =>{
 
         const mesLen = message.content.split` `.length;
 
@@ -36,7 +36,7 @@ const shuffle = new Command({
             return;
         }
 
-        if(times > 10 || times < 1){
+        if(times >= 10 || times < 1){
             replyAndDelete(message, "Nice try guy, but you can't have a value bigger than 10 or lower than 1");
             return;
         }else if(!author.hasPermission("ADMINISTRATOR")){
@@ -78,9 +78,11 @@ const shuffle = new Command({
      */
     parser : (input) => {
 
-        let author = input.member;
-        let target = input.mentions.members.first();
-        let times = input.content.split` `[2];
+        const author = input.member;
+        const target = input.mentions.members.first();
+        const times = input.content.split` `[2];
+
+        console.log(target);
 
         return {message : input, author, target ,times};
     }
@@ -89,7 +91,7 @@ const shuffle = new Command({
 const banish = new Command({
     name: 'banish', 
     description:'Moves user out of channel and into AFK channel for X amount of times. Use unbanish to undo.', 
-    core: ({message, author, target, currChannel, times})=>{
+    core: ({ message, author, target, currChannel, times })=>{
 
         //permcheck AND args check
         if(!author.hasPermission(['ADMINISTRATOR'], false, true, true)|| times < 1 || isImmune(target.id)){
