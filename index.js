@@ -178,7 +178,7 @@ client.on('message', async function(message){
         }
         
         if(command && command instanceof Command){
-            let valid, reFetch;
+            let valid;
             try{
                 valid = await command.core(command.parser(message));
             }catch(e){
