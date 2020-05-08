@@ -185,7 +185,8 @@ client.on('message', async function(message){
                 valid = false;
                 console.log(e.stack);
             }
-            if((await message.fetch()))message.react(valid ? '✅' : '❌');
+            const reFetch = await message.fetch();
+            if(reFetch&&reFetch.content&&reFetch.content.length>0)message.react(valid ? '✅' : '❌');
         }else
             comms.notFound(message);
 	}
