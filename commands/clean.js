@@ -1,4 +1,5 @@
 const Command = require('./command.js');
+const delay = require('./delay.js');
 
 const clean = new Command({
 
@@ -11,7 +12,9 @@ const clean = new Command({
     core : async ({channel, times}) =>{
 
         if(times>500||times<1)return false;
-        await channel.bulkDelete(times);
+        //This is to avoid the visual bug that sometimes happens when a message is instantly deleted.
+        await delay(125);
+        await channel.bulkDelete(times+1);
         return {dont:1};
     },
     /**
