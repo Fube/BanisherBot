@@ -10,7 +10,6 @@ const clean = new Command({
     */
     core : async ({channel, times}) =>{
 
-        console.log(times, channel)
         if(times>500||times<1)return false;
         await channel.bulkDelete(times);
         return true;
