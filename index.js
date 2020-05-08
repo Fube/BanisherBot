@@ -185,7 +185,7 @@ client.on('message', async function(message){
                 valid = false;
                 console.log(e.stack);
             }
-            message.react(valid ? '✅' : '❌');
+            if(message)message.react(valid ? '✅' : '❌');
         }else
             comms.notFound(message);
 	}
