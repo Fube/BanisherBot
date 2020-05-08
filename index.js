@@ -178,14 +178,14 @@ client.on('message', async function(message){
         }
         
         if(command && command instanceof Command){
-            let valid;
+            let valid, reFetch;
             try{
                 valid = await command.core(command.parser(message));
+                reFetch = await message.fetch();
             }catch(e){
                 valid = false;
                 console.log(e.stack);
             }
-            const reFetch = await message.fetch();
             if(reFetch&&reFetch.content&&reFetch.content.length>0)message.react(valid ? '✅' : '❌');
         }else
             comms.notFound(message);
