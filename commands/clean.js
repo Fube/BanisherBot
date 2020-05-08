@@ -14,7 +14,7 @@ const clean = new Command({
         if(times>500||times<1)return false;
         //This is to avoid the visual bug that sometimes happens when a message is instantly deleted.
         await delay(125);
-        await channel.bulkDelete(times+1);
+        await channel.bulkDelete(+times+1);
         return {dont:1};
     },
     /**
