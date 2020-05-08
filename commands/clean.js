@@ -19,7 +19,7 @@ const clean = new Command({
      * @param {Object} input Caller's message
      * @returns {{channel, times : number}}
      */
-    parser : (input) => new Object({channel:input.channel, times:input.content.match(/\d+/)})
+    parser : (input) => new Object({channel:input.channel, times:input.content.match(/\d+/)[0]})
 });
 
 module.exports = clean;
