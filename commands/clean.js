@@ -12,7 +12,7 @@ const clean = new Command({
 
         if(times>500||times<1)return false;
         await channel.bulkDelete(times);
-        return true;
+        return {dont:1};
     },
     /**
      * @param {Object} input Caller's message
