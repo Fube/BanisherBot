@@ -1,5 +1,5 @@
 const Command = require('./command.js');
-const delay = require('./delay.js');
+const delay = require('../utils/delay.js');
 
 const clean = new Command({
 
