@@ -2,6 +2,7 @@ const Command = require('./command.js');
 const { CronJob } = require('cron');
 const axios = require('axios');
 const findChannels = require('../utils/findChannels.js');
+const { client } = require('../objs.js');
 
 /**
  * Retrieves data from the chrono.gg api
@@ -16,7 +17,7 @@ async function getNewDeal(){
 
 let chronoDeal;
 let chronoChannels = findChannels('all', n => n.type=='text' && n.name=='chrono');
-client.once('ready', () => console.log(findChannels('all', n=>true)))
+client.once('ready', () => console.log(findChannels('all', n=>true)));
 
 const makeEmbed = n => new Object({
 
