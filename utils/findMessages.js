@@ -5,15 +5,16 @@
  */
 const findMessages = (channel, predicate) =>{
 
-    const channels = [];
+    const messages = [];
+    console.log(channel.message.cache.size)
     for(const msg of channel.messages.cache){
 
         console.log(msg)
         if(predicate(msg[1])){
-            channels.push(msg[1]);
+            messages.push(msg[1]);
         }
     }
-    return channels;
+    return messages;
 };
 
 module.exports = findMessages;
