@@ -17,8 +17,7 @@ async function getNewDeal(){
 }
 
 let chronoDeal;
-let chronoChannels = [];
-client.once('ready', () => {chronoChannels = findChannels('all', n => n.type =='text' && n.name == 'chrono');});
+client.once('ready', () => {});
 
 const makeEmbed = n => new Object({
 
@@ -55,11 +54,14 @@ const dealReset = new CronJob({
         chronoDeal = await getNewDeal();
 
         const fun = async () => {
-            console.log(chronoChannels)
+
+            const chronoChannels = findChannels('all', n => n.type =='text' && n.name == 'chrono');
+
             for(const ch of chronoChannels){
 
                 const foo = await ch.awaitMessages(n => n.author.id == client.user.id);
                 const bar = await ch.awaitMessages(n => n.author.id == client.user.id && Date.now() - n.createdAt >= 1000 * 60 ** 2 * 24);
+                console.log(foo, bar)
                 if(!foo.size || [...bar].pop())
                     ch.send({embed : makeEmbed(chronoDeal)});
             }
