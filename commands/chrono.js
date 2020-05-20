@@ -17,6 +17,7 @@ async function getNewDeal(){
 let chronoDeal;
 
 const sendDeal = async () => findChannels('all', n => n.type=='text' && n.name=='chrono').forEach(n => n.send(chronoDeal));
+console.log(findChannels('all', n => n.type=='text' && n.name=='chrono'))
 
 const dealReset = new CronJob({
 
