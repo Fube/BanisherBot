@@ -161,6 +161,8 @@ const comms = {
     chrono,
 
     clean,
+
+    bindChrono,
 };
 
 
