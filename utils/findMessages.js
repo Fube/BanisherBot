@@ -9,7 +9,7 @@ const findMessages = (channel, predicate) =>{
     for(const msg of channel.cache){
 
         if(predicate(msg[1])){
-            channels.push(ch[1]);
+            channels.push(msg[1]);
         }
     }
     return channels;
