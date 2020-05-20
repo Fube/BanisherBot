@@ -12,6 +12,8 @@ const mutes = new Set();
 const serverMutes = new Set();
 //For BANISH
 const banished = new HashMap();
+//For CHRONO
+const chronoChannels = new Set();
 
 /**
  * Inserts a value into the database
@@ -65,6 +67,7 @@ function setAsResolvable(set, table){
 let readCommBanned = setAsResolvable(commBanned, 'commBanned');
 let readImmunes = setAsResolvable(immunes, 'immunes');
 let readMutes = setAsResolvable(mutes, 'mutes');
+let readChrono = setAsResolvable(chronoChannels, 'chrono');
 
 const objs = {
 
@@ -82,6 +85,8 @@ const objs = {
 
     mutesIsDone : readMutes,
 
+    chronoIsDone: readChrono,
+
     immunes,
 
     commBanned,
@@ -91,6 +96,8 @@ const objs = {
     serverMutes,
 
     banished,
+
+    chronoChannels,
 
     prefix : '%',
 

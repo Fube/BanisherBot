@@ -10,10 +10,8 @@ const findChannels = async (guild, predicate) =>{
     const channels = [];
     for(const ch of await (guild=='all'?client:guild).channels.cache){
 
-        console.log(ch[1].name)
-        if(predicate(ch[1])){
+        if(predicate(ch[1]))
             channels.push(ch[1]);
-        }
     }
     return channels;
 };

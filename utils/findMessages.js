@@ -9,9 +9,8 @@ const findMessages = async (channel, predicate) =>{
     
     for(const msg of await channel.messages.fetch()){
 
-        if(predicate(msg[1])){
+        if(predicate(msg[1]))
             messages.push(msg[1]);
-        }
     }
     return messages;
 };

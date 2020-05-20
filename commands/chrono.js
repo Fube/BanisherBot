@@ -1,9 +1,8 @@
 const Command = require('./command.js');
 const { CronJob } = require('cron');
 const axios = require('axios');
-const findChannels = require('../utils/findChannels.js');
 const findMessages = require('../utils/findMessages.js');
-const { client } = require('../objs.js');
+const { client, chronoChannels } = require('../objs.js');
 
 /**
  * Retrieves data from the chrono.gg api
@@ -17,7 +16,6 @@ async function getNewDeal(){
 }
 
 let chronoDeal;
-client.once('ready', () => {});
 
 const makeEmbed = n => new Object({
 
@@ -55,15 +53,14 @@ const dealReset = new CronJob({
 
         const fun = async () => {
 
-            const chronoChannels = await findChannels('all', n => n.type =='text' && /chrono/g.test(n.name));
-            console.log('Fun started', chronoChannels.length)
+            for(const id of chronoChannels){
 
-            for(const ch of chronoChannels){
+                const ch = await client.channels.fetch(id);
 
                 const foo = await findMessages(ch, n => n.author.id == client.user.id);
-                
+
                 if(!foo.size)
-                    ch.send({embed : makeEmbed(chronoDeal)});
+                    ch.send({ embed : makeEmbed(chronoDeal) });
             }
         };
 
