@@ -16,8 +16,8 @@ async function getNewDeal(){
 }
 
 let chronoDeal;
-let chronoChannels;
-client.once('ready', () => {chronoChannels = findChannels('all', n => n.type =='text' && n.name == 'chrono'); console.log(chronoChannels);});
+let chronoChannels = [];
+client.once('ready', () => {chronoChannels = findChannels('all', n => n.type =='text' && n.name == 'chrono');});
 
 const makeEmbed = n => new Object({
 
@@ -51,7 +51,13 @@ const dealReset = new CronJob({
     cronTime : '00 03 12 * * *',
     onTick : async _ => {
         chronoDeal = await getNewDeal();
-        //await sendDeal();
+        for(const ch of chronoChannels){
+
+            const foo = await ch.awaitMessages(n => n.author.id == client.user.id);
+            const bar = await ch.awaitMessages(n => n.author.id == client.user.id && Date.now() - n.createdAt >= 1000 * 60 ** 2 *24);
+            if(!foo.size || bar.size)
+                ch.send({embed : makeEmbed(chronoDeal)});
+        }
     },
     start : true,
     runOnInit : true,
