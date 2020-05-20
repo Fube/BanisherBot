@@ -1,7 +1,7 @@
 const Command = require('./command.js');
 const { CronJob } = require('cron');
 const axios = require('axios');
-const { RichEmbed } = require('discord.js');
+const findChannels = require('../utils/findChannels.js')
 
 /**
  * Retrieves data from the chrono.gg api
@@ -14,12 +14,15 @@ async function getNewDeal(){
     return {normal_price, sale_price, img : promo_image, chrono : unique_url, steam : steam_url};
 }
 
+const sendDeal = async () => findChannels('all', n => n.type=='text' && n.name=='chrono').forEach(n => n.send(chronoDeal));
+
 let chronoDeal;
 const dealReset = new CronJob({
 
     cronTime : '00 03 12 * * *',
     onTick : async _ => {
         chronoDeal = await getNewDeal();
+        await sendDeal();
     },
     start : true,
     runOnInit : true,
