@@ -191,6 +191,8 @@ client.on('message', async function(message){
 	}
 });
 
+process.on('unhandledRejection', console.error);
+
 client.once('ready', _ => console.log('Mounted and loaded'));
 
 client.login(process.env.BOT_TOKEN);
