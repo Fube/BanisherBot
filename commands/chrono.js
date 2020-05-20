@@ -27,11 +27,11 @@ const makeEmbed = n => new Object({
     fields : [
         {
             name : 'Normal price',
-            value : `$$ n.normal_price}USD`,
+            value : `$${n.normal_price}USD`,
         },
         {
             name : 'Sale price',
-            value : `$$ n.sale_price}USD`,
+            value : `$${n.sale_price}USD`,
         },
         {
             name : 'Chrono link',
@@ -59,12 +59,8 @@ const dealReset = new CronJob({
 
             for(const ch of chronoChannels){
 
-                console.log('awaiting');
-
                 const foo = findMessages(ch, n => n.author.id == client.user.id);
                 const bar = findMessages(ch, n => n.author.id == client.user.id && Date.now() - n.createdAt >= 1000 * 60 ** 2 * 24);
-
-                console.log('awaited');
 
                 console.log(foo, bar);
                 if(!foo.size)
@@ -92,32 +88,7 @@ const chrono = new Command({
      * Replies to message with data from chronoDeal.
      */
     core : async (message) => {
-        const embed = {
-
-            color : 0x0099ff,
-            title : 'Chrono Deal',
-            url : chronoDeal.chrono,
-            fields : [
-                {
-                    name : 'Normal price',
-                    value : `$${chronoDeal.normal_price}USD`,
-                },
-                {
-                    name : 'Sale price',
-                    value : `$${chronoDeal.sale_price}USD`,
-                },
-                {
-                    name : 'Chrono link',
-                    value : chronoDeal.chrono,
-                },
-                {
-                    name : 'Steam link',
-                    value : chronoDeal.steam,
-                    inline : true,
-                }
-            ],
-            image : {url : chronoDeal.img},
-        };
+        const embed = makeEmbed(chronoDeal);
         message.reply({embed});
         return true;
     },
