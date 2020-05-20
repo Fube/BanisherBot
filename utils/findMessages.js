@@ -6,6 +6,7 @@
 const findMessages = async (channel, predicate) =>{
 
     const messages = [];
+    console.log('got to findmsg')
     
     for(const msg of await channel.messages.fetch()){
 
