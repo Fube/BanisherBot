@@ -2,7 +2,7 @@ const Command = require('./command.js');
 const { CronJob } = require('cron');
 const axios = require('axios');
 const findChannels = require('../utils/findChannels.js');
-const delay = require('../utils/delay');
+const findMessages = require('../utils/findMessages.js');
 const { client } = require('../objs.js');
 
 /**
@@ -59,13 +59,14 @@ const dealReset = new CronJob({
 
             for(const ch of chronoChannels){
 
-                console.log('awaiting')
-                // const foo = await ch.awaitMessages(n => n.author.id == client.user.id);
-                // const bar = await ch.awaitMessages(n => n.author.id == client.user.id && Date.now() - n.createdAt >= 1000 * 60 ** 2 * 24);
-                console.log(ch.messages)
-                console.log('awaited')
-                console.log(foo, bar)
-                if(!foo.size || [...bar].pop())
+                console.log('awaiting');
+                
+                const foo = findMessages(ch, n => n.author.id == client.user.id);
+                const bar = findMessages(ch, n => n.author.id == client.user.id && Date.now() - n.createdAt >= 1000 * 60 ** 2 * 24);
+                console.log('awaited');
+
+                console.log(foo, bar);
+                if(!foo.size)
                     ch.send({embed : makeEmbed(chronoDeal)});
             }
         };
