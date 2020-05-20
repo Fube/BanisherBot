@@ -55,6 +55,7 @@ const dealReset = new CronJob({
         chronoDeal = await getNewDeal();
 
         const fun = async () => {
+            console.log(chronoChannels)
             for(const ch of chronoChannels){
 
                 const foo = await ch.awaitMessages(n => n.author.id == client.user.id);
