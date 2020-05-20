@@ -61,8 +61,6 @@ const dealReset = new CronJob({
 
                 console.log('awaiting');
 
-                console.log(ch)
-
                 const foo = findMessages(ch, n => n.author.id == client.user.id);
                 const bar = findMessages(ch, n => n.author.id == client.user.id && Date.now() - n.createdAt >= 1000 * 60 ** 2 * 24);
 
