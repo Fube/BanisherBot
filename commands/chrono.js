@@ -15,6 +15,7 @@ async function getNewDeal(){
 }
 
 let chronoDeal;
+let chronoChannels = findChannels('all', n => n.type=='text' && n.name=='chrono');
 
 const makeEmbed = n => new Object({
 
@@ -42,9 +43,6 @@ const makeEmbed = n => new Object({
     ],
     image : {url : n.img},
 });
-
-const sendDeal = async () => findChannels('all', n => n.type=='text' && n.name=='chrono').forEach(n => n.send({embed: makeEmbed(chronoDeal)}));
-console.log(findChannels('all', n => true));
 
 const dealReset = new CronJob({
 
