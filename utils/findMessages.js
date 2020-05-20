@@ -9,7 +9,7 @@ const findMessages = async (channel, predicate) =>{
     
     for(const msg of await channel.messages.fetch()){
 
-        console.log(msg[1])
+        console.log(msg[1].id, msg[1].cratedAt)
         if(predicate(msg[1])){
             messages.push(msg[1]);
         }
