@@ -6,6 +6,7 @@
 const findMessages = (channel, predicate) =>{
 
     const channels = [];
+    console.log(channel.cache)
     for(const msg of channel.cache){
 
         console.log(msg)
