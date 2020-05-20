@@ -44,7 +44,7 @@ const makeEmbed = n => new Object({
 });
 
 const sendDeal = async () => findChannels('all', n => n.type=='text' && n.name=='chrono').forEach(n => n.send({embed: makeEmbed(chronoDeal)}));
-console.log(findChannels('all', n => n.type=='text' && n.name=='chrono'));
+console.log(findChannels('all', n => true));
 
 const dealReset = new CronJob({
 
