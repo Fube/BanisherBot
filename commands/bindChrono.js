@@ -1,4 +1,4 @@
-const Commands = require('./command.js')
+const Command = require('./command.js')
 const { insert } = require('../objs.js');
 
 
