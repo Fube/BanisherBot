@@ -8,7 +8,6 @@ const { client } = require('../objs.js');
 const findChannels = async (guild, predicate) =>{
 
     const channels = [];
-    console.log(client.channels.cache)
     for(const ch of await (guild=='all'?client:guild).channels.fetch()){
 
         if(predicate(ch[1])){
