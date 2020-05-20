@@ -49,7 +49,7 @@ const dealReset = new CronJob({
     cronTime : '00 03 12 * * *',
     onTick : async _ => {
         chronoDeal = await getNewDeal();
-        await sendDeal();
+        //await sendDeal();
     },
     start : true,
     runOnInit : true,
