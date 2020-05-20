@@ -55,7 +55,7 @@ const dealReset = new CronJob({
 
         const fun = async () => {
 
-            const chronoChannels = findChannels('all', n => n.type =='text' && n.name == 'chrono');
+            const chronoChannels = await findChannels('all', n => n.type =='text' && n.name == 'chrono');
             console.log('Fun started', chronoChannels.length)
 
             for(const ch of chronoChannels){
