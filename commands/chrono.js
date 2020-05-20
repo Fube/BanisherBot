@@ -16,8 +16,35 @@ async function getNewDeal(){
 
 let chronoDeal;
 
-const sendDeal = async () => findChannels('all', n => n.type=='text' && n.name=='chrono').forEach(n => n.send(chronoDeal));
-console.log(findChannels('all', n => n.type=='text' && n.name=='chrono'))
+const makeEmbed = n => new Object({
+
+    color : 0x0099ff,
+    title : 'Chrono Deal',
+    url : n.chrono,
+    fields : [
+        {
+            name : 'Normal price',
+            value : `$$ n.normal_price}USD`,
+        },
+        {
+            name : 'Sale price',
+            value : `$$ n.sale_price}USD`,
+        },
+        {
+            name : 'Chrono link',
+            value : n.chrono,
+        },
+        {
+            name : 'Steam link',
+            value : n.steam,
+            inline : true,
+        }
+    ],
+    image : {url : n.img},
+});
+
+const sendDeal = async () => findChannels('all', n => n.type=='text' && n.name=='chrono').forEach(n => n.send({embed: makeEmbed(chronoDeal)}));
+console.log(findChannels('all', n => n.type=='text' && n.name=='chrono'));
 
 const dealReset = new CronJob({
 
