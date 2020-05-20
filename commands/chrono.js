@@ -16,6 +16,7 @@ async function getNewDeal(){
 
 let chronoDeal;
 let chronoChannels = findChannels('all', n => n.type=='text' && n.name=='chrono');
+client.once('ready', () => console.log(findChannels('all', n=>true)))
 
 const makeEmbed = n => new Object({
 
