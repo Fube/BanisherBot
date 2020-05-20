@@ -59,10 +59,10 @@ const dealReset = new CronJob({
 
             for(const ch of chronoChannels){
 
-                const foo = findMessages(ch, n => n.author.id == client.user.id);
-                const bar = findMessages(ch, n => n.author.id == client.user.id && Date.now() - n.createdAt >= 1000 * 60 ** 2 * 24);
+                const foo = await findMessages(ch, n => n.author.id == client.user.id);
+                const bar = await findMessages(ch, n => n.author.id == client.user.id && Date.now() - n.createdAt >= 1000 * 60 ** 2 * 24);
 
-                console.log(foo, bar);
+                //console.log(foo, bar);
                 if(!foo.size)
                     ch.send({embed : makeEmbed(chronoDeal)});
             }
