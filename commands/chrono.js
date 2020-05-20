@@ -60,8 +60,9 @@ const dealReset = new CronJob({
             for(const ch of chronoChannels){
 
                 console.log('awaiting')
-                const foo = await ch.awaitMessages(n => n.author.id == client.user.id);
-                const bar = await ch.awaitMessages(n => n.author.id == client.user.id && Date.now() - n.createdAt >= 1000 * 60 ** 2 * 24);
+                // const foo = await ch.awaitMessages(n => n.author.id == client.user.id);
+                // const bar = await ch.awaitMessages(n => n.author.id == client.user.id && Date.now() - n.createdAt >= 1000 * 60 ** 2 * 24);
+                console.log(ch.messages)
                 console.log('awaited')
                 console.log(foo, bar)
                 if(!foo.size || [...bar].pop())
