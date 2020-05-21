@@ -59,11 +59,9 @@ const dealReset = new CronJob({
 
                 const ch = await client.channels.fetch(id);
 
-                const foo = await findMessages(ch, n => n.author.id == client.user.id);
+                const foo = await findMessages(ch, n => n.author.id == client.user.id && n.embeds.length && n.embeds[0].title == 'Chrono Deal');
 
-                console.log(foo.pop())
-
-                if(!foo.size)
+                if(!foo.length || foo.pop().embeds[0].url != chronoDeal.chrono)
                     ch.send({ embed : makeEmbed(chronoDeal) });
             }
         };
