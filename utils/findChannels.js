@@ -13,7 +13,6 @@ const findChannels = (guild, predicate) =>{
         if(predicate(ch[1]))
             channels.push(ch[1]);
     }
-    console.log(channels)
     return channels;
 };
 
