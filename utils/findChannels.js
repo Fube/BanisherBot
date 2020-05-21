@@ -5,14 +5,15 @@ const { client } = require('../objs.js');
  * @param {*} guild Where to look for the channels
  * @param {function} predicate Criteria to match
  */
-const findChannels = async (guild, predicate) =>{
+const findChannels = (guild, predicate) =>{
 
     const channels = [];
-    for(const ch of await (guild=='all'?client:guild).channels.cache){
+    for(const ch of (guild=='all'?client:guild).channels.cache){
 
         if(predicate(ch[1]))
             channels.push(ch[1]);
     }
+    console.log(channels)
     return channels;
 };
 
