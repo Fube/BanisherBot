@@ -52,8 +52,6 @@ db.connect();
  */
 function setAsResolvable(set, table){
 
-    console.log(table)
-
     const promise = new Promise(resolve =>{
         
             db.query(`SELECT * FROM "${table.toString()}";`, (err, res) => {

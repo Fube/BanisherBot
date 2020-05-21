@@ -53,8 +53,7 @@ const dealReset = new CronJob({
 
         const fun = async () => {
 
-            const chans = await chronoIsDone;
-            console.log([...chronoChannels][0], chans[0]);
+            await chronoIsDone;
 
             for(const id of chronoChannels){
 
@@ -62,7 +61,7 @@ const dealReset = new CronJob({
 
                 const foo = await findMessages(ch, n => n.author.id == client.user.id);
 
-                const lastMsg = [...foo.pop()]
+                console.log(foo)
 
                 if(!foo.size)
                     ch.send({ embed : makeEmbed(chronoDeal) });
