@@ -2,7 +2,7 @@ const Command = require('./command.js');
 const { CronJob } = require('cron');
 const axios = require('axios');
 const findMessages = require('../utils/findMessages.js');
-const { client, chronoChannels } = require('../objs.js');
+const { client, chronoChannels, chronoIsDone } = require('../objs.js');
 
 /**
  * Retrieves data from the chrono.gg api
@@ -53,7 +53,8 @@ const dealReset = new CronJob({
 
         const fun = async () => {
 
-            console.log([...chronoChannels][0]);
+            const chans = await chronoIsDone;
+            console.log([...chronoChannels][0], chans[0]);
 
             for(const id of chronoChannels){
 
