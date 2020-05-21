@@ -8,7 +8,6 @@ const bindChrono = new Command({
     description: 'Makes channel receive chrono.gg updates',
     /** 
      * Self explanatory...
-     * 
      * @param {string} n id of channel to add
      * @returns {boolean}
      */
