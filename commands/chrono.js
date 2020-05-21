@@ -59,7 +59,7 @@ const dealReset = new CronJob({
 
                 const foo = await findMessages(ch, n => n.author.id == client.user.id);
 
-                console.log(foo.pop());
+                const lastMsg = [...foo.pop()]
 
                 if(!foo.size)
                     ch.send({ embed : makeEmbed(chronoDeal) });
