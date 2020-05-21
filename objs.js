@@ -52,13 +52,16 @@ db.connect();
  */
 function setAsResolvable(set, table){
 
-    let promise = new Promise(resolve => db.query(`SELECT * FROM "${table.toString()}";`), (err, res) => {
+    let promise = new Promise(resolve =>{
+        
+            db.query(`SELECT * FROM "${table.toString()}";`, (err, res) => {
 
-        for(let row of res.rows){
-            set.add(row.ID);
-        }
+                for(let row of res.rows){
+                    set.add(row.ID);
+                }
 
-        resolve(set);
+                resolve(set);
+            });
     });
 
     return promise;
