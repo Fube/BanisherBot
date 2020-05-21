@@ -53,7 +53,7 @@ const dealReset = new CronJob({
 
         const fun = async () => {
 
-            console.log(chronoChannels);
+            console.log([...chronoChannels][0]);
 
             for(const id of chronoChannels){
 
