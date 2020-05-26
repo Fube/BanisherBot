@@ -51,7 +51,7 @@ const moveAll = new Command({
         const from = !bits.length ? [input.member.voice.channel] : bits.map(m => findChannels(input.guild, n => n.type == 'voice' && n.name.toString().toLowerCase() == m)[0]);
         const to = findChannels(input.guild, n => n.type == 'voice' && n.name.toString().toLowerCase() == destination.toString().toLowerCase())[0];
 
-        console.log(from, bits.map(name=>findChannels(input.guild, n.type=='voice' && n.name.toLowerCase()==name)[0]));
+        console.log(from, bits.map(name=>findChannels(input.guild, n => n.type=='voice' && n.name.toLowerCase()==name)[0]));
 
         return {message : input, from, to};
     }
