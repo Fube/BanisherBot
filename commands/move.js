@@ -13,8 +13,6 @@ const moveAll = new Command({
      */
     core: async ({message, from, to}) => {
 
-        console.log(from.name, to.name);
-
         if(!to){
             message.reply("Destination not found. Be sure to spell it correctly");
             return false;
@@ -48,10 +46,9 @@ const moveAll = new Command({
         const bits = input.content.match(/\s.+/)[0].split(prefix).map(xx => xx.trimStart().trimEnd());
         const destination = bits.splice(-1)[0];
 
-        const from = !bits.length ? [input.member.voice.channel] : bits.map(m => findChannels(input.guild, n => n.type == 'voice' && n.name.toString().toLowerCase() == m)[0]);
+        // bits.map(m => findChannels(input.guild, n => n.type == 'voice' && n.name.toString().toLowerCase() == m)[0]);
+        const from = !bits.length ? [input.member.voice.channel] : findChannels(input.guild, n => n.type == 'voice' && bits.contains(n.name.toLowerCase()));
         const to = findChannels(input.guild, n => n.type == 'voice' && n.name.toString().toLowerCase() == destination.toString().toLowerCase())[0];
-
-        console.log(from.map(n=>n.name))
 
         return {message : input, from, to};
     }
