@@ -43,12 +43,12 @@ const moveAll = new Command({
      */
     parser : (input) => {
 
-        const bits = input.content.match(/\s.+/)[0].split(prefix).map(xx => xx.trimStart().trimEnd());
+        const bits = input.content.match(/\s.+/)[0].split(prefix).map(xx => xx.trimStart().trimEnd().toLowerCase());
         const destination = bits.splice(-1)[0];
 
         // bits.map(m => findChannels(input.guild, n => n.type == 'voice' && n.name.toString().toLowerCase() == m)[0]);
-        const from = !bits.length ? [input.member.voice.channel] : findChannels(input.guild, n => n.type == 'voice' && bits.contains(n.name.toLowerCase()));
-        const to = findChannels(input.guild, n => n.type == 'voice' && n.name.toString().toLowerCase() == destination.toString().toLowerCase())[0];
+        const from = !bits.length ? [input.member.voice.channel] : findChannels(input.guild, n => n.type == 'voice' && bits.includes(n.name.toLowerCase()));
+        const to = findChannels(input.guild, n => n.type == 'voice' && n.name.toString().toLowerCase() == destination)[0];
 
         return {message : input, from, to};
     }

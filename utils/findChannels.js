@@ -8,9 +8,10 @@ const { client } = require('../objs.js');
 const findChannels = (guild, predicate) =>{
 
     const channels = [];
+    let i = 0;
     for(const ch of (guild=='all'?client:guild).channels.cache){
 
-        if(predicate(ch[1]))
+        if(predicate(ch[1], i))
             channels.push(ch[1]);
     }
     return channels;
