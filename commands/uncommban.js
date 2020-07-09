@@ -14,8 +14,6 @@ const uncommban = new Command({
      */
     core : ({message, id}) => {
 
-        console.log(me, message.author.id)
-
         if(message.author.id == me || message.author.id == derek){
 
             message.guild.members.unban(id);
