@@ -32,7 +32,7 @@ const uncommban = new Command({
     parser : (input) => {
 
         const user = input.mentions.members.first();
-        const id = user ? user.id : input.split` `[1];
+        const id = user ? user.id : input.content.split` `[1];
 
         return {message : input, id};
     }
