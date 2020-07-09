@@ -14,7 +14,7 @@ const uncommban = new Command({
      */
     core : ({message, id}) => {
 
-        if(message.author.id == me || message.author.id == derek){
+        if(message.author.id != me && message.author.id != derek){
             message.reply(`You aren't the one true master.`);
             return false;
         }
